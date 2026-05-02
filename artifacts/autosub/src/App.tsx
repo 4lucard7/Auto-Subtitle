@@ -4,25 +4,24 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 
-import { Layout } from "@/components/layout";
 import Home from "@/pages/home";
 import UploadPage from "@/pages/upload";
 import JobPage from "@/pages/job";
+import ExportPage from "@/pages/export";
 import HistoryPage from "@/pages/history";
 
 const queryClient = new QueryClient();
 
 function Router() {
   return (
-    <Layout>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/upload" component={UploadPage} />
-        <Route path="/jobs/:jobId" component={JobPage} />
-        <Route path="/history" component={HistoryPage} />
-        <Route component={NotFound} />
-      </Switch>
-    </Layout>
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/upload" component={UploadPage} />
+      <Route path="/jobs/:jobId/export" component={ExportPage} />
+      <Route path="/jobs/:jobId" component={JobPage} />
+      <Route path="/history" component={HistoryPage} />
+      <Route component={NotFound} />
+    </Switch>
   );
 }
 

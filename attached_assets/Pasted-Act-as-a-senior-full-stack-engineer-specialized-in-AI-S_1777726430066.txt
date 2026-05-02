@@ -1,0 +1,187 @@
+Act as a senior full-stack engineer specialized in AI SaaS applications.
+
+Build a complete MVP project called "AutoSub" based on the following requirements.
+
+---
+
+## 🎯 Project Goal
+
+AutoSub is a web application that:
+
+* Uploads video/audio files
+* Extracts audio using FFmpeg
+* Transcribes speech to text using **faster-whisper (local model, NOT OpenAI API)**
+* Translates subtitles using a FREE solution (MyMemory or LibreTranslate)
+* Generates SRT subtitle files
+* Allows preview and download
+
+---
+
+## ⚠️ VERY IMPORTANT RULES
+
+* DO NOT use OpenAI Whisper API or GPT
+* MUST use **faster-whisper (local Python model)**
+* MUST be fully working locally
+* Clean, modular, production-ready code
+* Follow clean architecture
+
+---
+
+# 🧩 STEP 1: FRONTEND (START HERE FIRST)
+
+Use:
+
+* React + Vite
+* Tailwind CSS
+
+Build these pages:
+
+### 1. Landing Page
+
+* Hero section
+* Upload CTA
+* Features section (AI subtitles, translation, fast processing)
+
+### 2. Upload Page
+
+* Drag & drop zone
+* File validation (video/audio)
+* Upload button
+
+### 3. Processing Page
+
+* Progress bar
+* Steps:
+
+  * Uploading
+  * Extracting audio
+  * Transcribing
+  * Translating
+  * Generating subtitles
+
+### 4. Result Page
+
+* Video player
+* Subtitle preview
+* Tabs:
+
+  * Original text
+  * Translated text
+* Download buttons (.srt / .txt)
+
+---
+
+## 🎨 UI Rules
+
+* Keep design clean and modern (SaaS style)
+* Use same color palette (do not change colors)
+* Add loading states and animations
+* Responsive design
+
+---
+
+# ⚙️ STEP 2: BACKEND (FastAPI)
+
+Use:
+
+* FastAPI
+* Python 3.10+
+
+Structure:
+
+app/
+
+* main.py
+* routes/
+* services/
+
+  * transcription.py (faster-whisper)
+  * translation.py (free API)
+  * srt_generator.py
+  * audio_extractor.py (ffmpeg)
+
+---
+
+## 🎧 Transcription (IMPORTANT)
+
+Use faster-whisper:
+
+* Model: base or small
+* Local inference (CPU or GPU)
+* Return segments with timestamps
+
+---
+
+## 🌍 Translation
+
+* Use MyMemory API or LibreTranslate
+* Add chunking system (max 500 chars)
+* Add anti-limit system:
+
+  * caching
+  * fallback to original text if API fails
+
+---
+
+## 🎬 Audio Extraction
+
+Use FFmpeg:
+
+* Convert video → WAV (16kHz)
+
+---
+
+## 📝 SRT Generation
+
+* Format subtitles with timestamps
+* Respect SRT format
+
+---
+
+## 🔗 API Endpoints
+
+POST /api/upload
+POST /api/transcribe
+GET /api/result/{id}
+GET /api/download/{id}/srt
+
+---
+
+# ⚡ STEP 3: PROCESS FLOW
+
+1. Upload video
+2. Extract audio
+3. Transcribe with faster-whisper
+4. Translate text
+5. Generate SRT
+6. Return result
+
+---
+
+# 🧠 STEP 4: PERFORMANCE
+
+* Use background tasks (FastAPI BackgroundTasks)
+* Avoid blocking requests
+* Handle large files safely
+
+---
+
+# 📦 STEP 5: OUTPUT
+
+* Provide full code step-by-step
+* Start with frontend pages and components
+* Then backend implementation
+* Then integration (frontend ↔ backend)
+* Ensure everything works locally
+
+---
+
+# 🎯 FINAL GOAL
+
+Deliver a complete working MVP suitable for a PFE:
+
+* Clean architecture
+* Modern UI
+* Fully working transcription using faster-whisper
+* Translation system (free)
+* Downloadable subtitles
